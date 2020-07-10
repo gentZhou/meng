@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       const promise1 = new Promise((resolve,reject) =>{
+        resolve(1)
+      })
+
+      const promise2 = new Promise((resolve,reject) =>{
+        resolve(1)
+        console.log(123);
+      })
+      const promise3 = new Promise((resolve,reject) =>{
+        resolve(1111)
+      })
+      const result = Promise.allSettled([promise1,promise2,promise3])
+      console.log(result)
+
+
+    </script>
+</body>
+</html>

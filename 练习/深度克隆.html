@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        
+function deepClone(target) {
+  // 检测数据类型
+  const type = checkType(target);
+
+  // 初始化返回值
+  let result = null;
+
+  if (type === 'Array') {
+    result = [];
+  } else if (type === 'Object') {
+    result = {};
+  } else {
+    return target;
+  }
+
+  for (const key in target) {
+    if (target.hasOwnProperty(key)) {
+      // 只克隆直接属性
+      const value = target[key];
+      // value可能是对象/数组，它们不能直接赋值（直接赋值就是浅度克隆）
+      // 重新创建新对象/数组，遍历原对象/数组，往新对象/数组添加属性/方法
+      result[key] = deepClone(value);
+    }
+  }
+
+  return result;
+}
+
+function checkType(target) {
+  return Object.prototype.toString.call(target).slice(8, -1)
+}
+    function deepClone(target){
+        //检测数据类型
+        const type = checkType(target);
+
+        //初始化返回值
+        let result = null;
+
+        if (type === 'Array') {
+            result = [];
+        } else if (type === 'Object') {
+            result = {};
+        } else {
+            return target;
+        }
+
+    }
+    let arr =[22,34,34,34];
+    arr[4] = 66;
+    arr={};
+    console.log(arr.hasOwnProperty(2));
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

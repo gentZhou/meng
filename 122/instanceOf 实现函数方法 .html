@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        function instanceOf(){
+
+        }
+        //准确理解：检测A的隐式原型属性（__proto__）是否在B的显示原型属性（prototype）上
+
+
+        /*
+        请实现函数 instanceOf
+        A instanceOf B
+
+        准确理解：检测A的隐式原型属性（__proto__）是否在B的显示原型属性（prototype）上
+        A没有限制 B必须是函数
+
+        instanceof 只用来检测引用类型数据
+      */
+        function instanceOf(a,b) {
+            var isFunction=typeof b === 'function';
+            if(!isFunction){
+                // return new Error("b is not a function");
+                throw new Error("b is not a function"); // 抛
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

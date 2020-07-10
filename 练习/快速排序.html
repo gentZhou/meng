@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var arr=[1,23,4,24,5,6,9,0,3];
+        function quickSort(arr) {
+            if( arr.length <= 1){
+                return arr
+            }
+            var index = Math.floor(arr.length / 2);
+            var value = arr.splice(index,1)[0];
+            var left=[];
+            var right=[];
+            arr.forEach(function (item,index,){
+               
+                if(item<value){
+                    left.push(item);
+                    return;
+                }
+                right.push(item);
+            })
+            var newLeft = quickSort(left);
+            var newRight = quickSort(right);
+            return newLeft.concat([value],newRight);
+        }
+        console.log(arr);
+        console.log(quickSort(arr));
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

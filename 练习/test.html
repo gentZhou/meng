@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // const str=new Promise((resolve,reject)=>{
+        //     resolve('成功了');
+        //     // reject();
+        // });
+        // str
+        //   .finally(()=>{
+        //       console.log('你好啊');
+        //   })
+        // window.onload=function(){
+           
+        // }
+          
+    </script>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <script>
+        //  document.getElementById('btn').onclick=function() {
+        //       import("./1.js")
+        //       .then(()=>{
+        //         console.log(111);
+        //       })
+        //       .catch(()=>{
+        //         console.log(222);
+        //       });
+        //   };
+        // const arr1=[1,2,3,4,45,6,6];
+        // const arr2=arr1;
+        // arr1[2]=1000;
+        // console.log(arr1,arr2);
+        // var obj={
+        //   name:'jack',
+        //   age:18,
+        //   1:11,
+        //   2:22,
+        //   3:33,
+        //   4:44
+        // }
+        // for (const key in obj) {
+        //   if (object.hasOwnProperty(key)) {
+        //     // const element = object[key];
+        //     console.log(key);
+        //   }
+        // }
+        function checkType (target){
+          return Object.prototype.toString.call(target).slice(8,-1);
+        }
+        function deepClone (targer){
+          const type=checkType(target);
+          let result=null;
+          if(type==='Array'){
+            result=[];
+          }else if(type==='Object'){
+            result={};
+          }else{
+            return target;
+          }
+          for(const key in target){
+            if(target.hasOwnProperty(key)){
+              const value=target[key];
+              result[key]=deepClone(key);
+            }
+          }
+          return result;
+        }
+    </script>
+</body>
+</html>

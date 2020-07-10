@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        'use strict'
+        function move(){
+            console.log(123)
+        }
+        document.onmousemove=debounce(move,3000)
+        function debounce(fn,time) {
+            var timeId=null;
+            return function (){
+                clearTimeout(timeId)
+                var _this=this;
+                var _arg=arguments;
+                timeId=setTimeout(function(){
+                    fn.apply(_this,_arg);
+                },time)
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

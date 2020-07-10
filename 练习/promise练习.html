@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const promise=new Promise((resolve,reject)=>{
+            setTimeout(() =>{
+                // console.log(123);
+                // resolve();
+                reject();
+            },1000);
+        });
+        // promise.then((result)=>{
+        //     console.log('resolead');
+        // },(error)=>{
+        //     console.log('rejected')
+        // });
+        promise.then(()=>{
+            console.log(123);
+        })
+        .catch(()=>{
+            console.log(1233);
+        })
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

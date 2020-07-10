@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const promise1 = new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                console.log('a数据加载完成');
+                resolve();
+            },1000)
+        })
+        const promise2 = new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                console.log('b数据加载完成');
+                reject();
+            },2000)
+        })
+        const promise3 = new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                console.log('c数据加载完成');
+                resolve();
+            },3000)
+        })
+
+        const promise =Promise.all([promise1,promise2,promise3]);
+        const promise4=Promise.resolve([promise1,promise2,promise3]);
+
+        promise
+            .then(()=>{
+                console.log('全部加载完成了');
+            })
+            .catch(()=>{
+                console.log('加载失败了~')
+            })
+
+        promise4.then(()=>{
+            console.log('成功了')
+        })
+        .catch(()=>{
+            console.log('失败了')
+        })
+
+            
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

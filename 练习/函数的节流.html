@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>函数的节流</title>
 </head>
+
 <body>
     <script>
         /* function move(event) {
@@ -26,23 +28,24 @@
                 lastTime=nowTime;
             }
         } */
-        
-function move(){
-	console.log(123);
-}
 
-document.onmousemove=throttle(move,1000);
+        function move() {
+            console.log(123);
+        }
 
-function throttle (fn,time) {
-	var lastTime = 0;
-	return function () {
-		var nowTime=Date.now();
-		if(nowTime-lastTime<time) return;
-		fn.apply(this,arguments);
-		lastTime = nowTime;
-	}
-}
+        document.onmousemove = throttle(move, 1000);
+
+        function throttle(fn, time) {
+            var lastTime = 0;
+            return function () {
+                var nowTime = Date.now();
+                if (nowTime - lastTime < time) return;
+                fn.apply(this, arguments);
+                lastTime = nowTime;
+            }
+        }
 
     </script>
 </body>
+
 </html>

@@ -1,0 +1,5 @@
+new Promise((resolve, reject) => {  console.log(2)  
+    setTimeout(() => {    console.log(3)    
+        resolve(4)  })  
+    console.log(5)}).then(value => {  console.log(value)}).then(() => {  console.log(6)})
+setTimeout(() => {  console.log(7)})

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        跨域
+        同源策略最早由网景公司提出,是浏览器的一种安全策略
+        同源:协议  域名 端口号 必须完全相同
+        违背同源策略就是跨域
+
+        如何解决跨域
+        1.JOSNP
+            利用script自带的跨域功能开发的一种跨域解决方案
+            const script=document.createElement('script');
+            window.getData=function(data){console.log(data)};
+            script.src='http://localhost:12138?callback=getData';
+            document.body.appendChild(script);
+
+        2.cors
+            CORS是官方的跨域解决方案,通过设置响应头来告诉浏览器是否可以跨域
+            Access-Control-Allow-origin  允许那些地址可以跨域
+            Access-Control_Allow-Header  允许那些响应头可以跨域
+            Access-Control-Allow-Methods  允许那些请求方式可以跨域
+            Access-Control-Max-Age          预检请求缓存时间
+
+        3
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange=function(){
+            console.log(xhr.readyState);
+            if(xhr.readyState===4&xhr.status>=200&xhr.status<300){
+                console.log(xhr.reponseText)
+            }
+        }
+        xhr.open('POST','网址',true){
+            xhr.setRequestHeader('Content-Type','application/JavaScript')
+            const person={
+                username:'admin',
+                password:123
+            }
+        }
+        xhr.send(JSON.Stringify(person))
+        */
+
+
+    </script>
+</body>
+
+</html>

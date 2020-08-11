@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id='btn1'>发送3000请求</button>
+    <button id='btn2'>发送4000请求</button>
+    <script src='./axios.js'></script>
+    <script>
+        const axiosInstance1 = axios.create({
+            baseURL: 'http://localhost:3000',
+            header: {
+
+            },
+            //请求时间超过30S没有响应结果,就会自动中断
+            timeout: 30000
+        })
+        const axiosInstance2 = axios.create({
+            baseURL: 'http://localhost:4000',
+            header: {
+
+            },
+            //请求时间超过30S没有响应结果,就会自动中断
+            timeout: 30000
+        })
+
+        document.getElementById('btn1').onclick = function () {
+            axiosInstance1({
+                url: '/posts',
+                params: {}
+            })
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        };
+        document.getElementById('btn2').onclick = function () {
+            axiosInstance2({
+                url: '/profile',
+                params: {}
+            })
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
+    </script>
+
+</body>
+
+</html>

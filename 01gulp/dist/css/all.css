@@ -1,0 +1,21 @@
+#box1 {
+  background: red;
+  width: 100px;
+  height: 100px;
+}
+#box1 p {
+  font-size: 18px;
+  color: black;
+  font-weight: bold;
+}
+
+#box2 {
+  background: pink;
+  width: 200px;
+  height: 200px;
+}
+#box2 p {
+  font-size: 22px;
+  color: yellowgreen;
+  font-weight: bold;
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>10_过渡&动画1</title>
+  <style>
+    /* .title{
+      width:100px;
+      height:100px;
+      background:pink;
+      transform:translateX(100px);
+    } */
+    .enter {
+      transform: translateX(0);
+      transition: transform 3s, width 3s, background-color 3s;
+      width: 100px;
+      background: blue;
+    }
+
+    .leave {
+      transform: translateX(100px);
+      transition: transform 3s, width 3s, background-color 3s;
+      width: 200px;
+      background: yellow;
+
+    }
+
+    .v-leave,
+    .v-enter-to {
+      transform: translateX(0);
+      width: 100px;
+      background-color: green;
+    }
+
+    .v-leave-active,
+    .v-enter-active {
+      transition: transform 3s, width 3s, background-color 3s;
+    }
+
+    .v-leave-to,
+    .v-enter {
+      transform: translateX(200px);
+      width: 30px;
+      background-color: pink;
+
+    }
+
+    .li-leave,
+    .li-enter-to {
+      transform: translateX(0);
+      width: 100px;
+      background-color: purple;
+    }
+
+    .li-leave-active,
+    .li-enter-active {
+      transition: transform 3s, width 3s, background-color 3s;
+    }
+
+    .li-leave-to,
+    .li-enter {
+      transform: translateX(200px);
+      width: 30px;
+      background-color: yellow;
+
+    }
+
+    .animation-leave-active {
+      animation: move linear 3s;
+    }
+
+    .animation-enter-active {
+      animation: move reverse linear 3s;
+    }
+
+    @keyframes move {
+      0% {
+        transform: tanslateX(0);
+        width: 100px;
+        background-color: pink;
+      }
+
+      50% {
+        transform: translateX(50px);
+        width: 200px;
+        background-color: green;
+      }
+
+      100% {
+        transform: translateX(200px);
+        width: 50px;
+        background-color: purple;
+      }
+    }
+
+    /* 显示 -> 隐藏  leave
+            开始阶段：v-leave
+            过渡阶段: v-leave-active
+            结束阶段: v-leave-to
+
+    隐藏 -> 显示  enter
+      开始阶段：v-enter
+      过渡阶段: v-enter-active
+      结束阶段: v-enter-to */
+  </style>
+</head>
+
+<body>
+
+  <div id='demo'>
+    <p :class='className'>我会动的,不信你点</p>
+    <button @click='className = className ==="enter"?"leave":"enter"'>按钮</button>
+    <!-- <p v-if="isShow">你还好嘛</p> -->
+    <button @click='isShow=!isShow'>按钮2</button>
+    <transition>
+      <p v-if="isShow">我是 transition</p>
+    </transition>
+    <transition name='li'>
+      <p v-if='isShow'>我不好</p>
+    </transition>
+
+    <transition name='animation'>
+      <p v-if='isShow'>我不好</p>
+    </transition>
+  </div>
+
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <script type="text/javascript">
+    new Vue({
+      el: '#demo',
+      data: {
+        className: 'enter',
+        isShow: true,
+      }
+    })
+  </script>
+</body>
+
+</html>

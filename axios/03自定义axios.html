@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id='btn1'>GET请求</button>
+    <button id='btn2'>POST请求</button>
+    <button id='btn3'>PUT请求</button>
+    <button id='btn4'>DELETE请求</button>
+    <script>
+        function axios({ method = 'GET', url, data, params }) {
+            return new Promise((resolve, reject) => {
+                //发送ajax请求
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState !== 4) return;
+                    // console.log(xhr);
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        resolve({
+                            data: JSON.parse(xhr.responseText),
+                            config: {},
+                            header: {}
+                        })
+                        return;
+
+                    }
+                    reject(`${url} ${xhr.statusText}`);
+                }
+                method = method.toUpperCase();
+
+                //查询字符串参数
+                let qs = '';
+                //设置请求信息
+                if (params) {
+                    const keys = Object.keys(params);
+                    qs = keys.reduce((all, key) => {
+                        const value = params[key];
+                        all += `${key}=${value}&`;
+                        return all;
+                    }, '?')
+                        .slice(0, -1)
+                }
+                xhr.open(method, url + qs, true);
+
+                if (method === 'POST' || method === "PUT") {
+                    xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+                    data = JSON.stringify(data);
+                    xhr.send(data);
+                    return;
+                }
+                xhr.send();
+
+
+
+            })
+        }
+
+        document.getElementById('btn1').onclick = function () {
+            axios({
+                url: 'http://localhost:3000/posts12',
+                params: {}
+            })
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        };
+
+        document.getElementById('btn2').onclick = function () {
+            axios({
+                method: 'POST',
+                url: 'http://localhost:3000/posts',
+                data: {
+                    title: '哈哈哈',
+                    author: '老王'
+                }
+            })
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        };
+
+        document.getElementById('btn3').onclick = function () {
+            axios({
+                method: 'PUT',
+                url: 'http://localhost:3000/posts/1',
+                data: {
+                    title: '不是吧阿sir',
+                    author: '老李'
+                }
+            })
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        };
+
+        document.getElementById('btn4').onclick = function () {
+            axios({
+                method: "DELETE",
+                url: 'http://localhost:3000/posts/1',
+                params: {}
+            })
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        };
+
+    </script>
+
+</body>
+
+</html>

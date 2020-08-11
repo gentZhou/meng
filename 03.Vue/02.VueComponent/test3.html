@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../VueTest/js/vue.js"></script>
+</head>
+
+<body>
+    <div id='demo'>
+
+    </div>
+    <div id="app">
+        <p-statement></p-statement>
+    </div>
+    <script>
+        Vue.component('p-statement', {
+            data() {
+                return {
+                    message: '哦,哦!太糟糕'
+                }
+            },
+            methods: {
+                handleClick() {
+                    console.log('跟踪又被发现了')
+                }
+            },
+            template: '<p @click="handleClick">{{message}}</p>'
+        })
+
+
+        new Vue({
+            el: '#demo'
+        })
+        new Vue({
+            el: '#app'
+        })
+    </script>
+</body>
+
+</html>

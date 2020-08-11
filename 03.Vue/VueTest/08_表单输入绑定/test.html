@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>08_表单输入绑定</title>
+</head>
+
+<body>
+  <!--
+1. 使用v-model(双向数据绑定)自动收集数据
+  text/textarea
+  checkbox
+  radio
+  select
+-->
+  <div id="demo">
+    <form action="/xxx">
+      <span>用户名: </span>
+      <input type="text" v-model='username'><br>
+
+      <span>密码: </span>
+      <input type="password" v-model='password'><br>
+
+      <span>性别: </span>
+      <input type="radio" id="female" value='1' v-model="gender">
+      <label for="female">女</label>
+      <input type="radio" id="male" value='2' v-model='gender'>
+      <label for="male">男</label><br>
+
+      <span>爱好: </span>
+      <input type="checkbox" id="basket" v-model='hobby' value='basketball'>
+      <label for="basket">篮球</label>
+      <input type="checkbox" id="foot" v-model='hobby' value='football'>
+      <label for="foot">足球</label>
+      <input type="checkbox" id="pingpang" v-model='hobby' value='pingpong'>
+      <label for="pingpang">乒乓</label><br>
+
+      <span>城市: </span>
+      <select v-model='city'>
+        <option value=''>选择城市</option>
+        <option v-for='city in cities' :value='city.name'>
+          {{city.name}}
+
+        </option>
+
+      </select><br>
+      <span>介绍: </span>
+      <textarea rows="10" v-model='area'></textarea><br><br>
+
+      <input type="submit" value="注册" @click.prevent='submit'>
+    </form>
+  </div>
+
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <script type="text/javascript">
+    new Vue({
+      el: '#demo',
+      data: {
+        username: '',
+        password: '',
+        gender: '1',
+        hobby: [],
+        cities: [
+          { name: '深圳' },
+          { name: '北京' },
+          { name: '上海' },
+
+        ],
+        city: '',
+        area: '',
+      },
+      methods: {
+        submit() {
+          const { username, password, hobby, city, area } = this;
+          console.log(username, password, hobby, city, area);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

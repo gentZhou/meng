@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>09_Vue实例_生命周期</title>
+  <style>
+    p {
+      font-size: 50px;
+      color: blue;
+      opacity: 1;
+      font-weight: bold
+    }
+  </style>
+</head>
+
+<body>
+  <!--
+1. vue对象的生命周期
+  1). 初始化显示
+    * beforeCreate()
+    * created()
+    * beforeMount()
+    * mounted()
+  2). 更新状态
+    * beforeUpdate()
+    * updated()
+  3). 销毁vue实例: vm.$destory()
+    * beforeDestory()
+    * destoryed()
+2. 常用的生命周期方法
+  created()/mounted(): 发送ajax请求, 启动定时器等异步任务
+  beforeDestory(): 做收尾工作, 如: 清除定时器
+-->
+
+  <div id='app'>
+    <h1 ref='title' :name='num'>早餐,人生的一半</h1>
+    <button @click='handleClick'>按钮</button>
+    <input type="text" v-model='input'>
+    <p :style='{opacity:opacity}'>哦天啊</p>
+    <button @click='handleClick'>按钮</button>
+  </div>
+
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <script type="text/javascript">
+    new Vue({
+      el: '#app',
+      data: {
+        num: '123',
+        input: '没有撤退可言',
+        opacity: 1,
+      },
+      methods: {
+        handleClick() {
+          this.$destroy();
+        },
+      },
+      beforeCreate() {
+        console.log('beforeCreate()', this.num)
+      },
+      created() {
+        this.timeId = setInterval(() => {
+          this.opacity -= 0.1;
+          if (this.opacity <= 0) {
+            this.opacity = 1;
+          }
+          console.log(111);
+        }, 100)
+        console.log('create()', this.num)
+        console.log(this.$refs.title)
+      },
+      beforeMount() {
+        console.log('beforeMounted()', this.$refs.title)
+      },
+      mounted() {
+        console.log('mounted()', this.$refs.title)
+      },
+      // beforeUpdate() {
+      //   console.log('beforeUpdate', this.$refs.title)
+      // },
+      // updated() {
+      //   console.log('updated', this.$refs.title)
+      // },
+      beforeDestroy() {
+        console.log('beforeDestory', this.$refs.title)
+      },
+      destroyed() {
+        clearInterval(this.timeId);
+      }
+
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义promise</title>
+</head>
+
+<body>
+    <script src='./MyPromise.js'></script>
+    <script>
+        const promise = new MyPromise((resolve, reject) => {
+            // resolve(213);
+            reject(123);
+        })
+        promise.then((value) => {
+            console.log(value)
+            return new MyPromise((resolve, reject) => {
+                // console.log('成功了')
+
+                resolve(121);
+            })
+        }, (reason) => {
+            console.log(reason);
+            console.log(aa);
+        })
+            .then((value) => {
+                console.log(value)
+            }, (reason) => {
+                console.log(reason);
+            })
+        console.log(promise);
+    </script>
+</body>
+
+</html>

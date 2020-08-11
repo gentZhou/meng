@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='demo'>
+        <ul>
+            <li>
+                test1
+            </li>
+            <li>
+                test2
+                <p>hello</p>
+            </li>
+            <li>
+                test3
+            </li>
+            <li>
+                test4
+            </li>
+
+        </ul>
+    </div>
+
+    <script>
+        const arr = [2, 4, 6];
+        const demo = document.querySelectorAll('#demo li');
+        console.log('arr', arr);
+        console.log('demo', demo);
+        console.log([].slice.call(demo))
+
+        console.log(demo[2].nodeType);
+        console.log(demo[0].firstChild.nodeType);
+
+
+        const person = {
+            firstName: 'jack',
+            lastName: 'ma',
+        }
+        Object.defineProperty(person, "fullName", {
+            configurable: false, // 是否 可以重新配置/删除
+            enumerable: true, // 是否可以被for in遍历
+            get() {
+                return this.firstName + " " + this.lastName;
+            },
+            set(val) {
+                const [firstName, lastName] = val.split(" ");
+                this.firstName = firstName;
+                this.lastName = lastName;
+            },
+        });
+        // person.fullName='haa hh ';
+        console.log(person);
+        console.log('person', person.fullName);
+
+        // 得到对象自身可枚举属性组成的数组
+        console.log(Object.keys(person));
+        console.log(Object.values(person));
+
+        const obj = { a: 1 };
+        obj.__proto__.b = 2;
+
+        for (const key in obj) {
+            // console.log(key);
+            if (obj.hasOwnProperty(key)) {
+                console.log(key);
+            }
+        }
+
+        const container = document.getElementById('demo');
+
+        const fragment = document.createDocumentFragment();
+
+        // let child = container.firstChild;
+        // while(child){
+        //     fragment.appendChild(child);
+        //     child=container.firstChild;
+
+        // }
+        let child;
+        //
+        while (child = container.firstChild) {
+            fragment.appendChild(child);
+        }
+        console.log('demo', fragment)
+        //找到li
+        const list = fragment.children[0].children;
+        console.dir(list);
+        //变成真数
+        const arr2 = [].slice.call(list);
+        // const aa=[13,35,35,35];
+        // console.log('aa',[].slice.call(aa))
+
+        // console.dir('container',container)
+        arr2.forEach((li) => {
+            li.textContent = 'hello' + li.textContent;
+        })
+        console.log(fragment);
+
+        container.appendChild(fragment);
+    </script>
+</body>
+
+</html>

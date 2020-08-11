@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./axios.js"></script>
+</head>
+
+<body>
+    <button id="btn1">发送请求</button>
+    <button id="btn2">取消请求</button>
+    <script>
+        const CancelToken = axios.CancelToken;
+        const source = CancelToken.source();
+
+        document.getElementById('btn1').onclick = function () {
+            axios({
+                url: 'http://localhost:12138',
+                cancelToken: source.token
+            })
+                .then((response) => {
+                    console.log(response);
+                })
+                .catch((error) => {
+                    //判断当前错误是否是取消请求产生的错误
+                    if (axios.isCancel(error)) {
+                        console.log('请求被取消了', error);
+                        return;
+                    }
+                    console.log(error);
+                });
+        };
+
+        document.getElementById('btn2').onclick = function () {
+            source.cancel('取消请求~~~')
+        }
+
+
+    </script>
+</body>
+
+</html>

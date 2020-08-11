@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id='btn1'>GET请求</button>
+    <button id='btn2'>POST请求</button>
+    <button id='btn3'>PUT请求</button>
+    <button id='btn4'>DELETE请求</button>
+    <script src="./axios.js"></script>
+    <script>
+        axios.defaults.baseURL = 'http://localhost:3000';
+        document.getElementById('btn1').onclick = function () {
+            axios
+                .get('/posts', {
+                    params: {}
+                })
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        };
+
+        document.getElementById('btn2').onclick = function () {
+            axios
+                .post('/posts', {
+                    title: '你好坏哦',
+                    author: '天蚕土豆',
+                })
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        };
+
+        document.getElementById('btn3').onclick = function () {
+            axios
+                .put('/posts/2', {
+                    title: '你好哦',
+                    author: '唐家三少',
+                })
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        };
+
+        document.getElementById('btn4').onclick = function () {
+            axios
+                .delete('/posts/2', {
+                    params: {}
+                })
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        };
+
+
+    </script>
+
+</body>
+
+</html>

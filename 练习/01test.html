@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id='btn'>请求</button>
+    <script>
+        // arr = [3, 5, 2, 6, 2, 6];
+        // // safeUrl.find((url) => url === origin);
+        // const a = arr.find((a) => {
+        //     return 3 === 3;
+        // });
+        // console.log(a);
+        document.getElementById('btn').onclick = function () {
+            //创建对象
+            const xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status >= 200 && xhr.status < 300) {
+                    console.log(xhr.responseText);
+                }
+            };
+            xhr.open('POST', 'http://localhost:12138');
+            xhr.setRequestHeader('Content-Type', 'application/javascript');
+            const person = {
+                username: 'jack',
+                password: 123
+            }
+            xhr.send(JSON.stringify(person));
+            console.log('代码执行完了')
+
+        }
+    </script>
+
+</body>
+
+</html>

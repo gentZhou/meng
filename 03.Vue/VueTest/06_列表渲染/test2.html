@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>06_列表渲染_过滤与排序</title>
+</head>
+
+<body>
+  <!--
+1. 列表过滤
+2. 列表排序
+-->
+  <div id='menu'>
+    <input type="text" placeholder="搜索" v-model='searchName'>
+    <ul>
+      <li v-for='menu in filterName'>
+        {{menu.name}} -- {{menu.age}}
+      </li>
+    </ul>
+    <button @click='OrderType(1)'>价格升序</button>
+    <button @click='OrderType(-1)'>价格降序</button>
+    <button @click='OrderType(0)'>默认</button>
+
+  </div>
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <script type="text/javascript">
+    new Vue({
+      el: '#menu',
+      data: {
+        searchName: '',
+        orderType: 0,
+        menus: [
+          { name: '白菜', age: '20' },
+          { name: '萝卜', age: '18' },
+          { name: '土豆', age: '30' },
+          { name: '西红柿', age: '12' },
+          { name: '包菜', age: '40' },
+          { name: '娃娃菜', age: '50' },
+          { name: '莲藕', age: '13' },
+          { name: '胡萝卜', age: '6' },
+          { name: '花菜', age: '3' },
+        ]
+      },
+      methods: {
+        OrderType(orderType) {
+          this.orderType = orderType;
+        }
+      },
+      computed: {
+        filterName() {
+          const { searchName, menus, orderType } = this;
+          const filterAfter = menus.filter((menus) => {
+            return menus.name.indexOf(searchName) > -1;
+          })
+          switch (orderType) {
+            case -1:
+              filterAfter.sort((a, b) => {
+                return b.age - a.age
+              });
+              break;
+            case 1:
+              filterAfter.sort((a, b) => {
+                return a.age - b.age
+              });
+              break;
+          }
+
+          return filterAfter;
+        }
+      }
+    })
+
+
+
+
+  </script>
+</body>
+
+</html>

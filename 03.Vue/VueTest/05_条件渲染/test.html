@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>08_条件渲染</title>
+    <style>
+      p{
+        font-size:50px;
+        font-weight:bold;
+        color:blue;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      1. 条件渲染指令
+        v-if
+        v-else
+        v-show
+      2. 比较v-if与v-show
+        如果需要频繁切换 v-show 较好
+      -->
+
+    <div id="app">
+      <p v-if='true'>春眠不觉晓</p>
+      <!-- <p v-else-if>处处闻啼鸟</p> -->
+      <p v-else>夜来风雨声</p>
+      <p v-shoe=>花落知多少</p>
+
+
+    </div>
+    
+
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+    new Vue({
+      el:'#app',
+    })
+    </script>
+  </body>
+</html>

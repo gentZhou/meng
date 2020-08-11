@@ -1,0 +1,19 @@
+.box1 {
+  width: 100px;
+  height: 100px;
+  background: url(../images/1.jpg);
+  background-size: cover;
+  animation: move linear infinite 5s;
+  p {
+    font-size: 18px;
+  }
+}
+
+//定义运动的整个过程
+@keyframes move {
+  0% {
+  }
+  100% {
+    transform: translate(200px, 200px) rotate(45deg) scale(1.5);
+  }
+}

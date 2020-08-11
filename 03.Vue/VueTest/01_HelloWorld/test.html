@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>01_HelloWorld</title>
+</head>
+
+<body>
+  <!--
+      1. 引入Vue.js
+      2. 创建Vue对象
+        el : 指定根element(选择器)
+        data : 初始化数据(页面可以访问)
+      3. 双向数据绑定 : v-model
+      4. 显示数据 : {{xxx}}
+      5. 理解vue的mvvm实现
+    -->
+  <div id='box1'>
+    <p>{{message}}</p>
+    <input type="text" v-model=message>
+  </div>
+  <div id="app-2">
+    <span v-bind:title="message">
+      鼠标悬停几秒钟查看此处动态绑定的提示信息！
+    </span>
+
+
+  </div>
+
+  <script src="../js/vue.js"></script>
+
+  <script>
+    const vm = new Vue({
+      // el: '#box1',
+      data: {
+        message: 'hello Vew!'
+      }
+    })
+
+    vm.$mount('#box1');
+
+    var app2 = new Vue({
+      el: '#app-2',
+      data: {
+        message: '页面加载于 ' + new Date().toLocaleString()
+      }
+    })
+
+
+    console.log(vm);
+
+  </script>
+</body>
+
+</html>

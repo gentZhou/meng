@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #demo p {
+            font-size: 50px;
+            color: blueviolet;
+        }
+    </style>
+    <script src='../js/vue.js'></script>
+</head>
+
+<body>
+    <div id='demo'>
+        <p>我会变色哦,不信你看</p>
+        <button @click='handleClick'>按钮</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#demo',
+            data: {
+                name: 'jace',
+                age: 13,
+            },
+            methods: {
+                handleClick() {
+                    console.log(this.name);
+                    let { name } = this;
+                    name = 'tanmu';
+                    console.log(name);
+                    console.log(this.name);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>像做梦一样的聊天室</title>
+    <style>
+        body,
+        p,
+        h1,
+        h2,
+        h3,
+        button,
+        ul,
+        li,
+        textarea {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            overflow: scroll;
+        }
+
+        .header {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .main {
+            margin: 100px auto 0;
+            width: 400px;
+            height: 500px;
+            border: black solid 1px;
+        }
+
+        .main-left {
+            height: 50px;
+            background: rgb(0, 122, 204);
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            font-size: 22px;
+            font-family: "微软雅黑";
+            /* font-weight: bold; */
+        }
+
+        .main-content {
+            height: 350px;
+            /* resize: both; */
+            /* overflow: auto; */
+        }
+
+        .main-bottom {
+            width: 100%;
+            height: 99px;
+            border: 0;
+            border-top: black solid 1px;
+            outline: none;
+            resize: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        你的名字： <input type="text">
+    </div>
+    <div class="main">
+        <div class="main-left">像做梦一样</div>
+        <div class="main-content"></div>
+        <textarea class='main-bottom'></textarea>
+        <button class='btn'>发送</button>
+
+    </div>
+    <script type='text/javascript' src='./socket.io.js'></script>
+
+    <script type='text/javascript'>
+        const btn = document.querySelector('.btn');
+        const content = document.querySelector('textarea');
+        const name = document.querySelector('.header input');
+        const chatContent = document.querySelector('.main-content');
+
+        //客户端连接上服务端
+        const socket = io('ws://192.168.10.17:5557');
+
+        btn.onclick = function () {
+            const username = name.vaule;
+
+            if (!username) {
+                alert('请输入用户名');
+                return;
+            }
+
+            const msg = content.vaule;
+            if (!msg) {
+                return;
+            }
+            const time = Date.now();
+            //客户端向服务端发送消息
+            socket.emit('client_to_server', {
+                username,
+                msg,
+                time,
+            });
+            //显示聊天内容
+            const div = document.createElement('div');
+
+            div.innerHTML = `
+                <div class='title right-title'>${username}
+                    ${new Date(time).toLocaleString()}
+                </div>
+                <div class='right-content'>${msg}</div>
+            `;
+            chatContent.appendChild(div);
+        }
+
+
+        socket.on('server_to_client', function (data) {
+            console.log(data);
+        })
+    </script>
+</body>
+
+</html>

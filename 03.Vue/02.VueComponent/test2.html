@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='../VueTest/js/vue.js'></script>
+</head>
+
+<body>
+    <div id='demo'>
+        <title-liaomei></title-liaomei>
+    <title-tianao></title-tianao>
+
+    </div>
+    <script>
+        const Component = Vue.extend({
+            data() {
+                return {
+                    message: '令人陶醉的容颜'
+                }
+            },
+            methods: {
+                handleClick() {
+                    console.log('而是你在特殊的时间给了我不一样的感觉')
+                }
+            },
+            template: '<h1 @click="handleClick">{{message}}</h1>'
+        })
+
+        Vue.component('title-tianao', Component)
+        new Vue({
+            el: '#demo',
+            components: {
+                'title-liaomei': Component
+            }
+        })
+    </script>
+</body>
+
+</html>

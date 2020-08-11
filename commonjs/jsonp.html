@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>json</title>
+</head>
+
+<body>
+    <button id='btn'>发送请求</button>
+    <script>
+        document.getElementById('btn').onclick = function () {
+            const script = document.createElement('script');
+            window.getData = function (data) {
+                console.log(data);
+            }
+            //设置src属性
+            script.src = 'http://localhost:12138?callback=getData';
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+
+</html>

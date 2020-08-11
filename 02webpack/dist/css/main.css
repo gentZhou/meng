@@ -1,0 +1,1 @@
+.box1{width:100px;height:100px;background:url(/images/cac8448e19.jpg);background-size:cover;animation:move 5s linear infinite}.box1 p{font-size:18px}@keyframes move{to{transform:translate(200px,200px) rotate(45deg) scale(1.5)}}.box2{width:100px;height:100px;background:url(/images/3f3b2f5701.jpg);background-size:cover}.box2 p{font-size:30px}
